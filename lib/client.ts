@@ -187,6 +187,29 @@ export default class Client {
       );
   }
 
+    /**
+   * Get the media player info of this Roku device. Responses vary between devices.
+   * All keys are coerced to camelcase for easier access, so user-device-name
+   * becomes userDeviceName, etc.
+   * @see {@link https://sdkdocs.roku.com/display/sdkdoc/External+Control+API#ExternalControlAPI-query/media-plaer}
+   */
+  mediaPlayer(): Promise<DeviceInfo> {
+    const endpoint = `${this.ip}/query/media-player`;
+    debug(`GET ${endpoint}`);
+    return fetch(endpoint)
+      .then(parseXML)
+      .then(data =>
+        reduce(
+          data['media-player'],
+          (result, [value], key) => ({
+            ...result,
+            [camelcase(key)]: value,
+          }),
+          {},
+        ),
+      );
+  }
+
   /**
    * Fetch the given icon from the Roku device and return an object containing
    * the image type, extension, and the fetch response. The response can be
