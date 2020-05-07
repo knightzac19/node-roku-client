@@ -1,5 +1,5 @@
 {
-  "name": "roku-client",
+  "name": "@zknight/roku-client",
   "version": "3.3.4",
   "description": "Send commands to your Roku devices",
   "engines": {
