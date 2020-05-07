@@ -187,7 +187,7 @@ export default class Client {
       );
   }
 
-    /**
+  /**
    * Get the media player info of this Roku device. Responses vary between devices.
    * All keys are coerced to camelcase for easier access, so user-device-name
    * becomes userDeviceName, etc.
