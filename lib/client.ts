@@ -15,6 +15,10 @@ const debug = _debug('roku-client:client');
 /** The keys that can exist in a roku device info object. */
 export type DeviceInfo = Record<string, string>;
 
+// TODO: make this an interface with the possible values
+/** The keys that can exist in a roku device info object. */
+export type MediaInfo = Record<string, string>;
+
 /** The ids used by roku to identify an app. */
 export type AppId = number | string;
 
@@ -193,14 +197,14 @@ export default class Client {
    * becomes userDeviceName, etc.
    * @see {@link https://sdkdocs.roku.com/display/sdkdoc/External+Control+API#ExternalControlAPI-query/media-player}
    */
-  mediaPlayer(): Promise<DeviceInfo> {
+  mediaPlayer(): Promise<MediaInfo> {
     const endpoint = `${this.ip}/query/media-player`;
     debug(`GET ${endpoint}`);
     return fetch(endpoint)
       .then(parseXML)
       .then(data =>
         reduce(
-          data['media-player'],
+          data['player'],
           (result, [value], key) => ({
             ...result,
             [camelcase(key)]: value,
