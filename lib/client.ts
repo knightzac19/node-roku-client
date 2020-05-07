@@ -191,7 +191,7 @@ export default class Client {
    * Get the media player info of this Roku device. Responses vary between devices.
    * All keys are coerced to camelcase for easier access, so user-device-name
    * becomes userDeviceName, etc.
-   * @see {@link https://sdkdocs.roku.com/display/sdkdoc/External+Control+API#ExternalControlAPI-query/media-plaer}
+   * @see {@link https://sdkdocs.roku.com/display/sdkdoc/External+Control+API#ExternalControlAPI-query/media-player}
    */
   mediaPlayer(): Promise<DeviceInfo> {
     const endpoint = `${this.ip}/query/media-player`;
